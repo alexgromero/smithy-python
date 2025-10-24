@@ -72,7 +72,7 @@ class TestTimeoutErrorHandling:
         timeout_err = TimeoutError("Connection timed out")
         result = client.get_error_info(timeout_err)
         assert result == ErrorInfo(is_timeout_error=True, fault="client")
-        
+
         other_err = ValueError("Not a timeout")
         result = client.get_error_info(other_err)
         assert result == ErrorInfo(is_timeout_error=False)

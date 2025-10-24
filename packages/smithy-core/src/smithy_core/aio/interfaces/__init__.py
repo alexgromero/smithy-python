@@ -11,6 +11,7 @@ from ...interfaces import Endpoint, TypedProperties, URI
 from ...interfaces import StreamingBlob as SyncStreamingBlob
 from .eventstream import EventPublisher, EventReceiver
 
+
 @dataclass(frozen=True)
 class ErrorInfo:
     """Information about an error from a transport."""
@@ -100,8 +101,8 @@ class EndpointResolver(Protocol):
 class ClientTransport[I: Request, O: Response](Protocol):
     """Protocol-agnostic representation of a client transport (e.g. an HTTP client).
 
-    Transport implementations must define the get_error_info method to
-    determine which exceptions represent timeout conditions for that transport.
+    Transport implementations must define the get_error_info method to determine which
+    exceptions represent timeout conditions for that transport.
     """
 
     def get_error_info(self, exception: Exception, **kwargs) -> ErrorInfo:

@@ -468,9 +468,11 @@ class RequestPipeline[TRequest: Request, TResponse: Response]:
                         request=request_context.transport_request
                     )
             except Exception as e:
+                error_info = self.transport.get_error_info(e)
                 if error_info.is_timeout_error:
                     raise ClientTimeoutError(
                         message=f"Client timeout occurred: {e}", fault=error_info.fault
+                    ) from e
                 raise
 
             _LOGGER.debug("Received response: %s", transport_response)

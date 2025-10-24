@@ -51,6 +51,8 @@ class CallError(SmithyError):
     """Whether the error is a throttling error."""
 
     is_timeout_error: bool = False
+    """Whether the error represents a timeout condition."""
+
     def __post_init__(self):
         super().__init__(self.message)
 
